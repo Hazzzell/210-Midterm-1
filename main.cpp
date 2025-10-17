@@ -288,8 +288,43 @@ public:
 int main() {
     // empty doubly linked list
     DoublyLinkedList list;
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
-    
+    for (int i = 1; i <= 10; i++) {
+        // Push values 1 to 10 to the back of the list
+        list.push_back(i);   
+    }
+
+    // Print all elements forward
+    cout << "Full list forward: ";
+    list.print();            
+
+    // Print all elements backward
+    cout << "Full list backward: ";
+    list.print_reverse();    
+
+    // Print every other element
+    cout << "Every other element: ";
+    list.every_other_element(); 
+
+    // Delete 3rd node
+    cout << "Deleting position 3..." << endl;
+    list.delete_pos(3);      
+    list.print();
+
+    // Delete node with value 7
+    cout << "Deleting value 7..." << endl;
+    list.delete_val(7);      
+    list.print();
+
+    // Remove head
+    cout << "Pop front..." << endl;
+    list.pop_front();        
+    list.print();
+
+    // Remove tail
+    cout << "Pop back..." << endl;
+    list.pop_back();         
+    list.print();
+
     return 0;
 }
