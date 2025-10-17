@@ -222,40 +222,72 @@ public:
 
     // destructor 
     ~DoublyLinkedList() {
+        // while not empty list
         while (head) {
-            Node* temp = head;
-            head = head->next;
-            delete temp;
+            Node* temp = head;          // save current head
+            head = head->next;          // move head forward
+            delete temp;                // delete temp memory
         }
     }
+
+    // print list
     void print() {
-        Node* current = head;
+        Node* current = head;           // start at head
+        // empty list
         if (!current) {
             cout << "List is empty." << endl;
             return;
         }
         while (current) {
             cout << current->data << " ";
-            current = current->next;
+            current = current->next;    // move to next node
         }
         cout << endl;
     }
 
+    // print list reverse
     void print_reverse() {
-        Node* current = tail;
+        Node* current = tail;           // start at tail
+        // empty list
         if (!current) { 
             cout << "List is empty." << endl;
             return;
         }
         while (current) {
             cout << current->data << " ";
-            current = current->prev;
+            current = current->prev;    // move to previous node 
         }
         cout << endl;
+    }
+
+    // print every data starting with the first element
+    void every_other_element(){
+        Node* current = head;
+        // empty list
+        if (!current) { 
+            cout << "List is empty." << endl;
+            return;
+        }
+        // current point to a valid node
+        while (current) {
+            // print node pointing to 
+            cout << current->data << " ";
+            // move current two steps forward
+            if (current->next){
+                current = current->next->next;
+            }
+            // initialize to exit 
+            else {
+                current = nullptr;
+            }
+        }
+        cout << endl; 
     }
 };
 
 int main() {
+    // empty doubly linked list
+    DoublyLinkedList list;
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
     
