@@ -1,14 +1,20 @@
 #include <iostream>
 using namespace std;
 
+// define constant for the random list 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
+// Doubly Linked List Class
 class DoublyLinkedList {
 private:
+    // define a Node structure which represents each element
     struct Node {
         int data;
+        // pointer to previous node            
         Node* prev;
+        // pointer to next node
         Node* next;
+        // node constructor, initialize the value and pointer
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
             data = val; 
             prev = p;
@@ -16,24 +22,30 @@ private:
         }
     };
 
-    Node* head;
-    Node* tail;
+    Node* head;     // pointer to first node in the list
+    Node* tail;     // pointer to last node in the list
 
 public:
-    DoublyLinkedList() { head = nullptr; tail = nullptr; }
+    // constructor, initialize both head and tail
+    DoublyLinkedList() { head = nullptr; tail = nullptr; } 
 
+    // insert after a given position 
     void insert_after(int value, int position) {
         if (position < 0) {
             cout << "Position must be >= 0." << endl;
             return;
         }
 
+        // create a new node
         Node* newNode = new Node(value);
+
+        // if the list is empty, new node becomes head and tail
         if (!head) {
             head = tail = newNode;
             return;
         }
 
+        //
         Node* temp = head;
         for (int i = 0; i < position && temp; ++i)
             temp = temp->next;
