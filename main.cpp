@@ -6,6 +6,7 @@ const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 
 // Doubly Linked List Class
 class DoublyLinkedList {
+// only access by class's methods
 private:
     // define a Node structure which represents each element
     struct Node {
@@ -25,6 +26,7 @@ private:
     Node* head;     // pointer to first node in the list
     Node* tail;     // pointer to last node in the list
 
+// can be called from outside the class
 public:
     // constructor, initialize both head and tail
     DoublyLinkedList() { head = nullptr; tail = nullptr; } 
@@ -45,17 +47,20 @@ public:
             return;
         }
 
-        //
+        // traversing from head
         Node* temp = head;
+        // move temp to node at position
         for (int i = 0; i < position && temp; ++i)
             temp = temp->next;
 
+        // position exceeds list size
         if (!temp) {
             cout << "Position exceeds list size. Node not inserted.\n";
             delete newNode;
             return;
         }
 
+        //
         newNode->next = temp->next;
         newNode->prev = temp;
         if (temp->next)
