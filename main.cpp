@@ -288,43 +288,44 @@ public:
 int main() {
     // empty doubly linked list
     DoublyLinkedList list;
+    int size = rand() % (MAX_LS-MIN_LS+1) + MIN_LS;
+    
+    // randomly generate number
+    cout << "List with " << size << " random numbers:\n";
 
-    for (int i = 1; i <= 10; i++) {
-        // Push values 1 to 10 to the back of the list
-        list.push_back(i);   
-    }
-
-    // Print all elements forward
-    cout << "Full list forward: ";
-    list.print();            
-
-    // Print all elements backward
-    cout << "Full list backward: ";
-    list.print_reverse();    
-
-    // Print every other element
-    cout << "Every other element: ";
-    list.every_other_element(); 
-
-    // Delete 3rd node
-    cout << "Deleting position 3..." << endl;
-    list.delete_pos(3);      
+    for (int i = 0; i < size; ++i)
+        list.push_back(rand() % (MAX_NR-MIN_NR+1) + MIN_NR);
     list.print();
+    cout << endl;
 
-    // Delete node with value 7
-    cout << "Deleting value 7..." << endl;
-    list.delete_val(7);      
-    list.print();
+    cout << "Every other element \n";
+    list.every_other_element();
+    cout << endl;
 
-    // Remove head
-    cout << "Pop front..." << endl;
-    list.pop_front();        
+    cout << "Deleting the first node \n";
+    list.pop_front();
     list.print();
+    cout << endl;
 
-    // Remove tail
-    cout << "Pop back..." << endl;
-    list.pop_back();         
+    cout << "Deleting the last node \n";
+    list.pop_back();
     list.print();
+    cout << endl;
+
+    cout << "Deleting node at position 2 \n";
+    list.delete_pos(2);
+    list.print();
+    cout << endl;
+
+    cout << "Deleting node with value 50\n";
+    list.delete_val(50);
+    list.print();
+    cout << endl;
+
+    cout << "Reverse order \n";
+    list.print_reverse();
+    cout << endl;
 
     return 0;
 }
+
