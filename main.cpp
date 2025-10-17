@@ -60,31 +60,42 @@ public:
             return;
         }
 
-        //
+        // new node points to next node then temp
         newNode->next = temp->next;
         newNode->prev = temp;
+
+        // temp is not tail
         if (temp->next)
+            // next node's prev point to new node
             temp->next->prev = newNode;
         else
+            // new node is tail
             tail = newNode;
+        // temp points forward to new node
         temp->next = newNode;
     }
 
+    // delete node by value
     void delete_val(int value) {
-        if (!head) return;
+        if (!head) return;      // empty list
 
+        // start at begining head
         Node* temp = head;
         
+        // traverse till there is node with match value
         while (temp && temp->data != value)
             temp = temp->next;
 
+        // value not found
         if (!temp) return; 
 
+        // not head, prev node skips over temp
         if (temp->prev)
             temp->prev->next = temp->next;
         else
-            head = temp->next; 
+            head = temp->next;      // delete head, move the head pointer
 
+        // not tail
         if (temp->next)
             temp->next->prev = temp->prev;
         else
