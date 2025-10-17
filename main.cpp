@@ -95,71 +95,87 @@ public:
         else
             head = temp->next;      // delete head, move the head pointer
 
-        // not tail
+        // not tail, next node skips over temp
         if (temp->next)
             temp->next->prev = temp->prev;
         else
-            tail = temp->prev; 
-
+            tail = temp->prev;      // delete tail, move the tail pointer
+        
+        // delete temp memory
         delete temp;
     }
 
+    // delete node by position
     void delete_pos(int pos) {
+        // empty list
         if (!head) {
             cout << "List is empty." << endl;
             return;
         }
-    
+        
+        // first position with pop_front()
         if (pos == 1) {
             pop_front();
             return;
         }
-    
+
+        // start at begining head
         Node* temp = head;
     
+        // move temp to node at position
         for (int i = 1; i < pos; i++){
+            // position exceed
             if (!temp) {
                 cout << "Position doesn't exist." << endl;
                 return;
             }
             else
-                temp = temp->next;
+                temp = temp->next;          // move forward
         }
+        // check again outside for loop
         if (!temp) {
             cout << "Position doesn't exist." << endl;
             return;
         }
-    
+        
+        // last node with pop_back()
         if (!temp->next) {
             pop_back();
             return;
         }
-    
+        
+        // link the previous and next node to skip temp
         Node* tempPrev = temp->prev;
         tempPrev->next = temp->next;
         temp->next->prev = tempPrev;
         delete temp;
     }
 
+    // push value to back
     void push_back(int v) {
+        // allocate new node
         Node* newNode = new Node(v);
+        // empty list, head and tail point to new node
         if (!tail)
             head = tail = newNode;
         else {
-            tail->next = newNode;
-            newNode->prev = tail;
-            tail = newNode;
+            tail->next = newNode;       // tail point forward new node
+            newNode->prev = tail;       // new node point to tail
+            tail = newNode;             // update tail
         }
     }
     
+    // push value to front
     void push_front(int v) {
+        // allocate new node
         Node* newNode = new Node(v);
+        // empty list, head and tail point to new node
         if (!head)
             head = tail = newNode;
         else {
-            newNode->next = head;
-            head->prev = newNode;
-            head = newNode;
+            newNode->next = head;       // new node point forward head
+            head->prev = newNode;       // head point to new node
+            head = newNode;             // update head
         }
     }
     
