@@ -179,40 +179,48 @@ public:
         }
     }
     
+    // delete head, pop front
     void pop_front() {
-
+        // empty list
         if (!head) {
             cout << "List is empty." << endl;
             return;
         }
 
+        // save temp head
         Node * temp = head;
-
+        // more than one node
         if (head->next) {
-            head = head->next;
-            head->prev = nullptr;
-        }
+            head = head->next;          // head move forward
+            head->prev = nullptr;       // new head has no previous
+        }   
+        // one node
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr;      // empty list
+        delete temp;                    // delete temp memory
     }
 
+    // delete tail, pop back
     void pop_back() {
+        // empty list
         if (!tail) {
             cout << "List is empty." << endl;
             return;
         }
+        // save temp tail
         Node * temp = tail;
-
+        // more than one node
         if (tail->prev) {
-            tail = tail->prev;
-            tail->next = nullptr;
+            tail = tail->prev;          // tail move backward
+            tail->next = nullptr;       // new tail point to nothing 
         }
+        // one node 
         else
-            head = tail = nullptr;
-        delete temp;
+            head = tail = nullptr;      // empty list 
+        delete temp;                    // delete temp memory
     }
 
+    // destructor 
     ~DoublyLinkedList() {
         while (head) {
             Node* temp = head;
